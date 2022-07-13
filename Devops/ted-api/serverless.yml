@@ -1,0 +1,27 @@
+service: ted-api
+
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: python3.8
+
+functions:
+  hello:
+    handler: handler.hello
+    events:
+     - http:
+         path: /hello
+         method: get
+  squared:
+    handler: handler.squaredNum
+    events:
+     - http:
+         path: /squared
+         method: get
+  shopping:
+    handler: handler.shoppingList
+    events:
+     - http:
+         path: /List
+         method: post
