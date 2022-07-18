@@ -1,0 +1,17 @@
+- hosts: webservers
+  gather_facts: yes
+  become_user: root
+  become: true
+  tasks:
+  - name: update server
+    apt: update_cache=yes
+  - name: Install Nginx
+    apt: pkg=nginx state=present
+    notify:
+    - restart nginx
+  - name: Enable Nginx during boot
+    service: name=nginx state=started enabled=yes
+  handlers:
+    - name: restart nginx
+      service: name=nginx state=restarted
+
