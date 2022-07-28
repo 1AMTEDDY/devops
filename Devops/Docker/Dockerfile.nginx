@@ -1,0 +1,10 @@
+FROM nginx
+
+RUN apt update -y && apt upgrade -y && apt install nginx -y
+
+RUN rm -rf /usr/share/nginx/html/*
+
+WORKDIR /etc/nginx
+
+COPY nginx.conf .
+

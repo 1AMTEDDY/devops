@@ -1,0 +1,36 @@
+services:
+#Create Nginx Reverse proxy that proxies request to 3 services that are specified below
+#loadbalancer
+  loadbalancer: 
+    build: 
+      context: .
+      dockerfile: Dockerfile.nginx
+    restart: always
+    ports:
+      - "8080:80"
+      
+#Service 1 is ethereal webapp
+  ethereal: 
+    build: 
+      context: .
+      dockerfile: Dockerfile.ethereal
+    restart: always
+    #ports:
+     # - "8081:80"
+#Service 2 is dimension webapp
+  dimension: 
+    build: 
+      context: .
+      dockerfile: Dockerfile.dimension
+    restart: always
+   # ports:
+     # - "8082:80"
+#Service 3 is story webapp
+  story: 
+    build: 
+      context: .
+      dockerfile: Dockerfile.story
+    restart: always
+    #ports:
+     # - "8083:80"
+
