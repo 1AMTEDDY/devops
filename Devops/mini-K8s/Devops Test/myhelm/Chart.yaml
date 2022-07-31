@@ -1,0 +1,9 @@
+apiVersion: v2
+name: myhelm
+description: A Helm chart for Kubernetes that deploys 2 ngnix containers with an ingress and has a cron-job to deploy a hello-world container every 2 minutes
+
+type: application
+
+version: 0.1.0
+
+appVersion: "1.16.0"
