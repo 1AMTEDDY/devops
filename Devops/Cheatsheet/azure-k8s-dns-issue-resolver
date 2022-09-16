@@ -1,0 +1,3 @@
+kubectl get no -o json | jq -r '.items[].spec.providerID' | cut -c 9- | az vmss run-command invoke --ids @- \
+  --command-id RunShellScript \
+  --scripts 'grep nameserver /etc/resolv.conf || { dhclient -x; dhclient -i eth0; sleep 10; pkill dhclient; grep nameserver /etc/resolv.conf; }'`
