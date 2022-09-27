@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: network-policy
+  namespace: dev
+  annotations: 
+     meta.helm.sh/release-name: nginx-ingress
+     meta.helm.sh/release-namespace: dev
+spec:
+  podSelector:
+   matchLabels: 
+     app.kubernetes.io/name: ingress-nginx
+  policyTypes:
+    - Ingress
+  ingress:
+    - from:
+        - ipBlock:
+            cidr: 0.0.0.0/32
+         ports:                                                                                                    
+    - port: 80
+        protocol: TCP   
+    - port: 443
+        protocol: TCP
