@@ -1,0 +1,93 @@
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: letsencrypt
+spec:
+  acme:
+    email: {{ .Values.contactEmail }}
+    server: {{ .Values.letsEncryptUrl }}
+    privateKeySecretRef:
+      name: letsencrypt
+    solvers:
+    - dns01:
+        azureDNS:
+          clientID: {{ .Values.azureDns.clientId }}
+          clientSecretSecretRef:
+            name: azure-dns
+            key: clientSecret
+          subscriptionID: {{ .Values.azureDns.subscriptionId }}
+          tenantID: {{ .Values.azureDns.tenantId }}
+          resourceGroupName: {{ .Values.azureDns.resourceGroup }}
+          hostedZoneName: {{ .Values.azureDns.hostedZone }}
+{{ if eq .Release.Namespace "dev" }}
+---
+apiVersion: cert-manager.io/v1
+kind: Issuer
+metadata:
+  name: letsencrypt-dev
+  namespace: dev
+spec:
+  acme:
+    email: {{ .Values.contactEmail }}
+    server: {{ .Values.letsEncryptUrl }}
+    privateKeySecretRef:
+      name: letsencrypt-dev
+    solvers:
+    - dns01:
+        azureDNS:
+          clientID: {{ .Values.azureDns.clientId }}
+          clientSecretSecretRef:
+            name: azure-dns
+            key: clientSecret
+          subscriptionID: {{ .Values.azureDns.subscriptionId }}
+          tenantID: {{ .Values.azureDns.tenantId }}
+          resourceGroupName: {{ .Values.azureDns.resourceGroup }}
+          hostedZoneName: "dev.{{ .Values.azureDns.hostedZone }}"
+---
+apiVersion: cert-manager.io/v1
+kind: Issuer
+metadata:
+  name: letsencrypt-test
+  namespace: test
+spec:
+  acme:
+    email: {{ .Values.contactEmail }}
+    server: {{ .Values.letsEncryptUrl }}
+    privateKeySecretRef:
+      name: letsencrypt-test
+    solvers:
+    - dns01:
+        azureDNS:
+          clientID: {{ .Values.azureDns.clientId }}
+          clientSecretSecretRef:
+            name: azure-dns
+            key: clientSecret
+          subscriptionID: {{ .Values.azureDns.subscriptionId }}
+          tenantID: {{ .Values.azureDns.tenantId }}
+          resourceGroupName: {{ .Values.azureDns.resourceGroup }}
+          hostedZoneName: "test.{{ .Values.azureDns.hostedZone }}"
+{{ else if eq .Release.Namespace "prod" }}
+---
+apiVersion: cert-manager.io/v1
+kind: Issuer
+metadata:
+  name: letsencrypt-staging
+  namespace: staging
+spec:
+  acme:
+    email: {{ .Values.contactEmail }}
+    server: {{ .Values.letsEncryptUrl }}
+    privateKeySecretRef:
+      name: letsencrypt-staging
+    solvers:
+    - dns01:
+        azureDNS:
+          clientID: {{ .Values.azureDns.clientId }}
+          clientSecretSecretRef:
+            name: ""
+            key: clientSecret
+          subscriptionID: {{ .Values.azureDns.subscriptionId }}
+          tenantID: {{ .Values.azureDns.tenantId }}
+          resourceGroupName: {{ .Values.azureDns.resourceGroup }}
+          hostedZoneName: "staging.{{ .Values.azureDns.hostedZone }}"
+{{ end }}

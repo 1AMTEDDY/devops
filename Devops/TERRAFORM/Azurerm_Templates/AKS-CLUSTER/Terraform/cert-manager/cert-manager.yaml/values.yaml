@@ -1,0 +1,9 @@
+contactEmail: petersonwoko@gmail.com
+letsEncryptUrl: https://acme-staging-v02.api.letsencrypt.org/directory
+azureDns:
+  clientId: ""
+  clientSecret: ""
+  subscriptionId: ""
+  tenantId: ""
+  resourceGroup: ""
+  hostedZone: ""
