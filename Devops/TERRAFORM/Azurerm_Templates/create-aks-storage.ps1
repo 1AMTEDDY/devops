@@ -2,33 +2,38 @@
 
 #begin
 # Update with the name of your subscription.
-$SubscriptionName = "YourSubscriptionName"
+#$SubscriptionName = "Development"
+Set-AzContext <subscription-ID>
 
-# Give a name to your new storage account. It must be lowercase!
-$StorageAccountName1 = "yourstorageaccountname"
-$StorageAccountName2 = "yourstorageaccountname"
+# Give a name to your new storage account. It must be lowercase! and be unique
+$StorageAccountName = ""
+$ResourceGroup = ""
+$SkuName = ""
+
 
 # Choose "West US" as an example.
-$Location = "West US"
+$Location = ""
 
 # Give a name to your new container.
-$ContainerName1 = "imagecontainer"
-$ContainerName2 = "imagecontainer"
+
+$ContainerName = ""
+
 
 # Add your Azure account to the local PowerShell environment.
-Add-AzureAccount
+#Add-AzAccount -UseDeviceAuthentication
 
 # Set a default Azure subscription.
-Select-AzureSubscription -SubscriptionName $SubscriptionName –Default
+#Select-AzSubscription -SubscriptionName $SubscriptionName –DefaultProfile
 
 # Create a new storage account.
-New-AzureStorageAccount –StorageAccountName $StorageAccountName1 -Location $Location
-New-AzureStorageAccount –StorageAccountName $StorageAccountName2 -Location $Location
+New-AzStorageAccount –StorageAccountName $StorageAccountName -ResourceGroupName $ResourceGroup  -Location $Location -SkuName $SkuName -kind Storage
+
 
 # Set a default storage account.
 #Set-AzureSubscription -CurrentStorageAccountName $StorageAccountName -SubscriptionName $SubscriptionName
 
+#set context
+$Context = (Set-AzCurrentStorageAccount -ResourceGroupName $ResourceGroup -Name $StorageAccountName).Context
 # Create a new container.
-New-AzureStorageContainer -Name $ContainerName1 -Permission Off
+New-AzStorageContainer -Name $ContainerName -Permission Off -Context $Context
 
-New-AzureStorageContainer -Name $ContainerName2 -Permission blob
