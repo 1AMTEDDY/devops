@@ -19,19 +19,18 @@ spec:
           tenantID: {{ .Values.azureDns.tenantId }}
           resourceGroupName: {{ .Values.azureDns.resourceGroup }}
           hostedZoneName: {{ .Values.azureDns.hostedZone }}
-{{ if eq .Release.Namespace "dev" }}
+{{ if eq .Release.Namespace "prod" }}
 ---
 apiVersion: cert-manager.io/v1
-kind: Issuer
+kind: ClusterIssuer
 metadata:
-  name: letsencrypt-dev
-  namespace: dev
+  name: letsencrypt-oxefit-com
 spec:
   acme:
     email: {{ .Values.contactEmail }}
     server: {{ .Values.letsEncryptUrl }}
     privateKeySecretRef:
-      name: letsencrypt-dev
+      name: letsencrypt-oxefit-com
     solvers:
     - dns01:
         azureDNS:
@@ -42,52 +41,28 @@ spec:
           subscriptionID: {{ .Values.azureDns.subscriptionId }}
           tenantID: {{ .Values.azureDns.tenantId }}
           resourceGroupName: {{ .Values.azureDns.resourceGroup }}
-          hostedZoneName: "dev.{{ .Values.azureDns.hostedZone }}"
----
-apiVersion: cert-manager.io/v1
-kind: Issuer
-metadata:
-  name: letsencrypt-test
-  namespace: test
-spec:
-  acme:
-    email: {{ .Values.contactEmail }}
-    server: {{ .Values.letsEncryptUrl }}
-    privateKeySecretRef:
-      name: letsencrypt-test
-    solvers:
-    - dns01:
-        azureDNS:
-          clientID: {{ .Values.azureDns.clientId }}
-          clientSecretSecretRef:
-            name: azure-dns
-            key: clientSecret
-          subscriptionID: {{ .Values.azureDns.subscriptionId }}
-          tenantID: {{ .Values.azureDns.tenantId }}
-          resourceGroupName: {{ .Values.azureDns.resourceGroup }}
-          hostedZoneName: "test.{{ .Values.azureDns.hostedZone }}"
-{{ else if eq .Release.Namespace "prod" }}
----
-apiVersion: cert-manager.io/v1
-kind: Issuer
-metadata:
-  name: letsencrypt-staging
-  namespace: staging
-spec:
-  acme:
-    email: {{ .Values.contactEmail }}
-    server: {{ .Values.letsEncryptUrl }}
-    privateKeySecretRef:
-      name: letsencrypt-staging
-    solvers:
-    - dns01:
-        azureDNS:
-          clientID: {{ .Values.azureDns.clientId }}
-          clientSecretSecretRef:
-            name: ""
-            key: clientSecret
-          subscriptionID: {{ .Values.azureDns.subscriptionId }}
-          tenantID: {{ .Values.azureDns.tenantId }}
-          resourceGroupName: {{ .Values.azureDns.resourceGroup }}
-          hostedZoneName: "staging.{{ .Values.azureDns.hostedZone }}"
+          hostedZoneName: "oxefit.com"
 {{ end }}
+
+----
+apiVersion: cert-manager.io/v1
+kind: Issuer
+metadata:
+  name: letsencrypt-{{ .Release.Namespace }}-oxefit-io
+  namespace: {{ .Release.Namespace }}
+spec:
+  email: {{ .Values.contactEmail }}
+    server: {{ .Values.letsEncryptUrl }}
+    privateKeySecretRef:
+      name: letsencrypt-{{ .Release.Namespace }}-oxefit-io
+    solvers:
+    - dns01:
+        azureDNS:
+          clientID: {{ .Values.azureDns.clientId }}
+          clientSecretSecretRef:
+            name: azure-dns
+            key: clientSecret
+          subscriptionID: {{ .Values.azureDns.subscriptionId }}
+          tenantID: {{ .Values.azureDns.tenantId }}
+          resourceGroupName: {{ .Values.azureDns.resourceGroup }}
+          hostedZoneName: "{{ .Release.Namespace }}.{{ .Values.azureDns.hostedZone }}"
