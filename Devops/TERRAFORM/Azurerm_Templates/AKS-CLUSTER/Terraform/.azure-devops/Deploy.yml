@@ -1,0 +1,38 @@
+#HAPPY DEPLOYING
+#make sure you've read my README even if its poorly documented haha
+trigger:
+- none
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- task: TerraformTaskV3@3
+  displayName: Terraform Init
+  inputs:
+    provider: 'azurerm'
+    command: 'init'
+#edit working directory when creating your different deployment templates to fit where terraform should be initialized in the repo
+    workingDirectory: '$(System.DefaultWorkingDirectory)/AKS-CLUSTER/Terraform/...../....'
+    backendServiceArm: 'subscription name (sub ID)'
+    backendAzureRmResourceGroupName: 'name of terraform backend resourceGroup you created as per README instructions'
+    backendAzureRmStorageAccountName: 'name of terraform backend storage you created as per README instructions'
+    backendAzureRmContainerName: 'name of terraform backend Storagecontainer you created as per README instructions'
+    backendAzureRmKey: 'tf/terraform.tfstate' #basically just a tag for your tfstate
+
+- task: TerraformTaskV3@3
+  displayName: Terraform Plan
+  inputs:
+    provider: 'azurerm'
+    command: 'plan'
+#edit working directory when creating your different deployment templates to fit where terraform should be planned in the repo
+    workingDirectory: '$(System.DefaultWorkingDirectory)/aks-cluster2/terraform/key-vault'
+    environmentServiceNameAzureRM: 'subscription name (sub ID)'
+- task: TerraformTaskV3@3
+  displayName: Terraform Apply
+  inputs:
+    provider: 'azurerm'
+    command: 'apply'
+#edit working directory when creating your different deployment templates to fit where terraform should be applyed in the repo
+    workingDirectory: '$(System.DefaultWorkingDirectory)/aks-cluster2/terraform/key-vault'
+    environmentServiceNameAzureRM: 'subscription name (sub ID)'
