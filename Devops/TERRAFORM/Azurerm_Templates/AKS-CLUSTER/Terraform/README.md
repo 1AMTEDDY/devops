@@ -1,5 +1,5 @@
 # Introduction 
-A Terraform module to deploy an aks cluster and other Resources on Azure
+A Terraform module to deploy an aks cluster on Azure
 
 # Getting Started
 TODO: Guide users through getting your code up and can talk about:
