@@ -25,20 +25,7 @@ TEST CHANGES:
 'terraform plan'
 'terraform apply'
 
-On Azure Dvops:
-create your service principle to connect your pipeline to azure 
 
-use the powershell script found in the repo to create keyvault and storage for the terraform backend
-
-don't forget to create your auto.tfvars in order to input your variables while the pipeline is running
-
-Use pipeline yml and follow instructions commented out in the yml file to deploy each module independently.
-
-Deploy
-
-Star
-
-Contribute if you can make this better or there are new updates.
 
 
 
