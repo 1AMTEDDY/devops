@@ -5,34 +5,33 @@ A Terraform module to deploy an aks cluster on Azure
 TODO: Guide users through getting your code up and can talk about:
 1.	Installation process:
 Edit to your taste the values for each template as required 
-2.	aks dependencies:
-You need to provision key-vault and storage first for terraform backend. Please refer to the repo and provision using the powershell scripts
 
 
-# Build and Test
+# Build and Test Locallly
  To authenticate with Azure:
 run commands in your terminal
 'az login'
 
-INSTALL TERRAFORM:
-'brew tap hashicorp/tap'
-'brew install hashicorp/tap/terraform'
-'brew update'
-'brew upgrade hashicorp/tap/terraform'
+# INSTALL TERRAFORM:
+1. 'brew tap hashicorp/tap'
+2. 'brew install hashicorp/tap/terraform'
+3. 'brew update'
+4. 'brew upgrade hashicorp/tap/terraform'
 
-TEST CHANGES:
-'terraform init'
-'terraform plan'
-'terraform apply'
+# TEST CHANGES:
+1. 'terraform init'
+2. 'terraform plan'
+3. 'terraform apply'
 
-ON AZURE DEVOPS:
-create your service principle to connect your pipeline to azure 
+# ON AZURE DEVOPS:
+1. create your service principle to connect your pipeline to azure 
 
-use the powershell script found in the repo to create keyvault and storage for the terraform backend
+2. TERRAFORM dependencies:
+You need to provision key-vault and storage first for terraform backend. Please refer to the repo and provision using the powershell scripts
 
-don't forget to create your auto.tfvars in order to input your variables while the pipeline is running
+3. don't forget to create your auto.tfvars in order to input your variables while the pipeline is running
 
-Use pipeline yml and follow instructions commented out in the yml file to deploy each module independently.
+4. Use pipeline yml and follow instructions commented out in the yml file to deploy each module independently.
 
 #Deploy
 

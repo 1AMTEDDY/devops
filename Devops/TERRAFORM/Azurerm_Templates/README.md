@@ -5,8 +5,6 @@ A Terraform module to deploy Resources on Azure
 TODO: Guide users through getting your code up and can talk about:
 1.	Installation process:
 Edit to your taste the values for each template as required 
-2.	aks dependencies:
-You need to provision key-vault and storage first for terraform backend. Please refer to the repo and provision using the powershell scripts
 
 
 # Build and Test
@@ -14,16 +12,16 @@ You need to provision key-vault and storage first for terraform backend. Please 
 run commands in your terminal
 'az login'
 
-INSTALL TERRAFORM:
-'brew tap hashicorp/tap'
-'brew install hashicorp/tap/terraform'
-'brew update'
-'brew upgrade hashicorp/tap/terraform'
+# INSTALL TERRAFORM:
+1. 'brew tap hashicorp/tap'
+2. 'brew install hashicorp/tap/terraform'
+3. 'brew update'
+4. 'brew upgrade hashicorp/tap/terraform'
 
-TEST CHANGES:
-'terraform init'
-'terraform plan'
-'terraform apply'
+# TEST CHANGES:
+1. 'terraform init'
+2. 'terraform plan'
+3. 'terraform apply'
 
 
 
