@@ -27,16 +27,20 @@ resource "azurerm_kubernetes_cluster" "k8s" {
     type = "SystemAssigned"
   }
 
-role_based_access_control {
-    enabled = true
-
-    azure_active_directory {
+  role_based_access_control_enabled = true
+    azure_active_directory_role_based_access_control {
       managed = true
       admin_group_object_ids = [
-        data.cluster.id
+        ""
       ]
-    }
+    
   }
 
+}
+resource "azurerm_kubernetes_cluster_node_pool" "node_pool" {
+      kubernetes_cluster_id = azurerm_kubernetes_cluster.k8s.id
+      for_each = var.node_pools
+      name = each.value.name
+      vm_size = each.value.vm_size
 }
 

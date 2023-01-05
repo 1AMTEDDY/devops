@@ -1,24 +1,24 @@
 variable "location" {
   description = "Azure region in which instance will be hosted"
   type        = string
+  default = ""
 }
 
 variable "resource_group_name" {
   description = "Name of the application ressource group, herited from infra module"
   type        = string
+  default = ""
 }
 variable "redis_instance_name" {
   description = "The name of the Redis instance"
-  default     = "cache-westus2"
+  default     = ""
 }
 
 variable "redis_family" {
-  type        = map(any)
+  type        = string
   description = "The SKU family/pricing group to use. Valid values are `C` (for `Basic/Standard` SKU family) and `P` (for `Premium`)"
-  default = {
-  Standard    = "C"
+  default  = "P"
    
-  }
 }
 
 variable "capacity" {
@@ -36,13 +36,16 @@ variable "sku_name" {
 variable "cluster_shard_count" {
   description = "Number of cluster shards desired"
   type        = number
-  default     = 3
+  default     = 0
 }
 
 
 variable "authorized_cidrs" {
   description = "Map of authorized cidrs"
   type        = map(string)
+  default = {
+    "network" = "10.2.0.0/16"
+  }
 }
 
 variable "allow_non_ssl_connections" {
