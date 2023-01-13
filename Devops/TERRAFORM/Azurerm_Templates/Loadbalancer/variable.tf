@@ -5,7 +5,7 @@ variable "location" {
   default = "westus2"
 }
 variable "ip_name" {
-    default = "K8s-qa-public-IP"
+    default = "K8s-public-IP"
 }
 variable "lb_name" {
   default = "lb-westus2"
@@ -24,7 +24,7 @@ variable "pool_address" {
     default = "IP_ADDRESS"
 }
 variable "ip_address" {
-  default = "20.22.21.247"
+  default = ""
 }
 variable "vnet_name" {
     default = "LB_VNET"
