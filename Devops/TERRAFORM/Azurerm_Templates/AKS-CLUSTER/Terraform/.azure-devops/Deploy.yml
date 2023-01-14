@@ -26,7 +26,7 @@ steps:
     provider: 'azurerm'
     command: 'plan'
 #edit working directory when creating your different deployment templates to fit where terraform should be planned in the repo
-    workingDirectory: '$(System.DefaultWorkingDirectory)/aks-cluster2/terraform/key-vault'
+    workingDirectory: '$(System.DefaultWorkingDirectory)/aks-cluster2/terraform/......'
     environmentServiceNameAzureRM: 'subscription name (sub ID)'
 - task: TerraformTaskV3@3
   displayName: Terraform Apply
@@ -34,5 +34,5 @@ steps:
     provider: 'azurerm'
     command: 'apply'
 #edit working directory when creating your different deployment templates to fit where terraform should be applyed in the repo
-    workingDirectory: '$(System.DefaultWorkingDirectory)/aks-cluster2/terraform/key-vault'
+    workingDirectory: '$(System.DefaultWorkingDirectory)/aks-cluster2/terraform/.....'
     environmentServiceNameAzureRM: 'subscription name (sub ID)'
