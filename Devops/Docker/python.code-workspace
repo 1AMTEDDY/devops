@@ -1,0 +1,17 @@
+{
+	"folders": [
+		{
+			"path": "../../../python"
+		},
+		{
+			"path": "../.."
+		},
+		{
+			"path": "../../../silly-go-examples"
+		},
+		{
+			"path": "../../../SCRIPTS-MAY-2022"
+		}
+	],
+	"settings": {}
+}

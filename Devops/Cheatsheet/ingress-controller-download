@@ -2,16 +2,13 @@ https://kubernetes.gitHub.io/ingress-nginx/deploy
 
 Use the yaml manifest don't kubectl apply yet
 
-Copy and paste the 'raw.gitHub' link, copy yaml manifest and edit to your taste in your IDE 
- 
-
+Copy and paste the 'raw.gitHub' link, copy yaml manifest and edit to your taste in your IDE
 *This ingress-controller is one I've not had issues with compared to others.
 
-Apply: 
+Apply:
 
 Kubectl apply -f <ingress.yml>
 
 You can choose to create a network policy for your cluster refer to network policy yaml file in the repo
 Or read more at:
 Kubernetes.io/docs/concepts/services-networking/network-policies/
-
