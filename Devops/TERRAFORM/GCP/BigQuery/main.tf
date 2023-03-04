@@ -12,11 +12,8 @@ resource "google_bigquery_dataset" "main" {
     for_each = var.access
     content {
       # BigQuery API converts IAM to primitive roles in its backend.
-
       # This causes Terraform to show a diff on every plan that uses IAM equivalent roles.
-
       # Thus, do the conversion between IAM to primitive role here to prevent the diff.
-
       role = lookup(local.iam_to_primitive, access.value.role, access.value.role)
       # Additionally, using null as a default value would lead to a permanant diff
       # See https://github.com/hashicorp/terraform-provider-google/issues/4085#issuecomment-516923872
