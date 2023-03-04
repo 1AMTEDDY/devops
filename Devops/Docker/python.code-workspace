@@ -11,6 +11,9 @@
 		},
 		{
 			"path": "../../../SCRIPTS-MAY-2022"
+		},
+		{
+			"path": "../../../Bash_scripting_2023"
 		}
 	],
 	"settings": {}
