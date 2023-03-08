@@ -9,31 +9,27 @@ variable "prefix" {
   default     = ""
 }
 
-variable "names" {
-  type        = list(string)
-  description = "Names of the service accounts to create."
-  default     = []
-}
+#variable "names" {
+ # type        = string
+ # description = "Names of the service accounts to create."
+ # default     = ""
+#}
 
-variable "project_roles" {
-  type        = list(string)
-  description = "Common roles to apply to all service accounts, project=>role as elements."
-  default     = []
-}
+
 variable "display_name" {
   type        = string
   description = "Display names of the created service accounts (defaults to 'Terraform-managed service account')"
-  default     = "Terraform-managed service account"
+  default     = ""
 }
 
 variable "description" {
   type        = string
   description = "Default description of the created service accounts (defaults to no description)"
-  default     = ""
+  default     = "Dev Service account for Google AV Program"
 }
 variable "terraform-credentials" {
     type     = string
-    default = "<file>"
+    default = ""
     description = "The GCP service account that terraform will use to authenticate to the project"
 
 }
@@ -45,4 +41,10 @@ variable "region" {
 variable "zone" {
   type = string
   default = ""
+}
+variable "account_id" {
+  type = string
+  default = ""
+  description = "the email address You're using for gcp"
+
 }

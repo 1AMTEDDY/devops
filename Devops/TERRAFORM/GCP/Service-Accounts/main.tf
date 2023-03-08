@@ -1,11 +1,14 @@
 # create service accounts
+# create service accounts
 resource "google_service_account" "service_accounts" {
-  for_each     = var.names
+  #name    = var.names
   display_name = var.display_name
-  description  = index(var.names, each.value) >= length(var.descriptions) ? var.description : element(var.descriptions, index(var.names, each.value))
+  description  = var.description
   project      = var.project
-  prefix       = var.prefix
+  account_id = var.account_id
+
 }
+
 
 # common roles
 
