@@ -63,3 +63,28 @@ variable "access" {
     special_group = "projectOwners"
   }]
 }
+variable "tables" {
+  description = "A list of objects which include table_id, schema, clustering, time_partitioning, range_partitioning, expiration_time and labels."
+  type = map(any)
+  default     = {
+    table1 = {
+        table_id = ""
+
+    }
+    table2 = {
+        table_id = ""
+
+    }
+    table3 = {
+        table_id = ""
+
+    }
+    table4 = {
+        table_id = ""
+    }
+    table5 = {
+        table_id = ""
+
+    }
+  }
+}

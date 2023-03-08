@@ -24,6 +24,12 @@ resource "google_bigquery_dataset" "main" {
     }
   }
 }
+resource "google_bigquery_table" "tables" {
+    for_each = var.tables
+    table_id = each.value.table_id
+    dataset_id =  google_bigquery_dataset.dev_bq.dataset_id
+#deletion_protection = false
+}
 
 
 
