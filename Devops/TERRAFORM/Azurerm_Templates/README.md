@@ -1,10 +1,10 @@
-# Introduction 
+# Introduction
 A Terraform module to deploy Resources on Azure
 
 # Getting Started
 TODO: Guide users through getting your code up and can talk about:
 1.	Installation process:
-Edit to your taste the values for each template as required 
+Edit to your taste the values for each template as required
 
 
 # Build and Test
@@ -22,9 +22,3 @@ run commands in your terminal
 1. 'terraform init'
 2. 'terraform plan'
 3. 'terraform apply'
-
-
-
-
-
-

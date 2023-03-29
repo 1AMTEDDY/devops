@@ -13,12 +13,14 @@ variable "cluster_name" {
   description = "Name of the AKS cluster"
   default = ""
 }
+
 variable "resource_group_name" {
     type = string
     description = "The resource group name"
+
     default = ""
-  
 }
+
 variable "cluster_location" {
   type        = string
   description = "The Azure Region where the Resource Group should exist."
@@ -35,6 +37,7 @@ variable "cluster_location" {
 variable "pod_security_policy" {
   type        = bool
   description = "Enable PodSecurityPolicy the Kubernetes API"
+  default = false
 }
 
 
@@ -81,60 +84,22 @@ variable "node_max_pods" {
   description = "Total amount of pods allowed per node"
 }
 
-variable "node_availability_zones" {
-  default     = [1, 2, 3]
-  type        = list(number)
-  description = "The availability zones to place the node pool instances"
-}
+#variable "node_availability_zones" {
+#  default     = [1, 2, 3]
+#  type        = list(number)
+#  description = "The availability zones to place the node pool instances"
+#}
+variable "network_profile" {
 
-
-
-
-# Addons node pool
-
-variable "node_pools" {
-  description = "Addons node pools"
-  type = map(any)
+  description = "(Optional) Sets up network profile for Advanced Networking."
   default = {
-    nodepool1 = {
-    name                = ""
-    vm_size             = "Standard_B2ms"
-    os_disk_size_gb     = 128
-    enable_auto_scaling = true
-    node_count          = 1
-    min_count           = 1
-    max_count           = 10
-    max_pods            = 250
+    # Use azure-cni for advanced networking
+    network_plugin = "azure"
+    # Sets up network policy to be used with Azure CNI. Currently supported values are calico and azure."
+    network_policy     = "azure"
+    service_cidr    = "" #shouldnt overlap with aks vnet and subnet range, should be different in each cluster
   }
-    nodepool2 = {
-    name                = ""
-    vm_size             = "Standard_B2ms"
-    os_disk_size_gb     = 128
-    enable_auto_scaling = true
-    node_count          = 1
-    min_count           = 1
-    max_count           = 10
-    max_pods            = 250
-    }
-    nodepool3 = {
-    name                = ""
-    vm_size             = "Standard_B2ms"
-    os_disk_size_gb     = 128
-    enable_auto_scaling = true
-    node_count          = 1
-    min_count           = 1
-    max_count           = 10
-    max_pods            = 250
-    }
-    nodepool4 = {
-    name                = ""
-    vm_size             = "Standard_B2ms"
-    os_disk_size_gb     = 128
-    enable_auto_scaling = true
-    node_count          = 1
-    min_count           = 1
-    max_count           = 10
-    max_pods            = 250
-    }
+
 }
-}
+
+
