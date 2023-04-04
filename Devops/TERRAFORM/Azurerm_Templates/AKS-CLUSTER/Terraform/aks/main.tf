@@ -2,7 +2,7 @@
 data "azurerm_subnet" "system_subnet" {
   name                 = "" #going to use for default node pool vnet_subnet_id
   resource_group_name  = var.resource_group_name
-  virtual_network_name = "vnet-dev2-eastus2"
+  virtual_network_name = ""
   address_prefixes     = [""]
 }
 data "azurerm_subnet" "subnet_1" {
