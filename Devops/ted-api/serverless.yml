@@ -25,3 +25,6 @@ functions:
      - http:
          path: /List
          method: post
+
+plugins:
+  - serverless-python-requirements
