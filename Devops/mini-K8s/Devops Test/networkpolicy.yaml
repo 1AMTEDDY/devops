@@ -3,12 +3,12 @@ kind: NetworkPolicy
 metadata:
   name: network-policy
   namespace: dev
-  annotations: 
+  annotations:
      meta.helm.sh/release-name: nginx-ingress
      meta.helm.sh/release-namespace: dev
 spec:
   podSelector:
-   matchLabels: 
+   matchLabels:
      app.kubernetes.io/name: ingress-nginx
   policyTypes:
     - Ingress
@@ -16,8 +16,6 @@ spec:
     - from:
         - ipBlock:
             cidr: 0.0.0.0/32
-         ports:                                                                                                    
-    - port: 80
-        protocol: TCP   
-    - port: 443
-        protocol: TCP
+        - ports:
+          protocol: TCP
+          port: 80

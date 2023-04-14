@@ -1,7 +1,7 @@
 FROM nginx
 
 RUN apt update -y && apt upgrade -y && apt install nginx -y && apt install wget unzip -y
-
+RUN ls
 RUN rm -rf /usr/share/nginx/html/*
 
 WORKDIR /usr/share/nginx/html/
