@@ -10,21 +10,22 @@ functions:
   hello:
     handler: handler.hello
     events:
-     - http:
-         path: /hello
-         method: get
+     - http: GET /hello
   squared:
     handler: handler.squaredNum
     events:
-     - http:
-         path: /squared
-         method: get
+     - http: GET /squared
   shopping:
     handler: handler.shoppingList
     events:
-     - http:
-         path: /List
-         method: post
+     - http: POST /List
+package:
+  exclude:
+    - node_modules/**
+    - .gitignore
+    - .git/**
+  include:
+    - handler.py
 
 plugins:
   - serverless-python-requirements
