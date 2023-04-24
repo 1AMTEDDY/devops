@@ -1,4 +1,4 @@
-https://kubernetes.gitHub.io/ingress-nginx/deploy
+# <https://kubernetes.gitHub.io/ingress-nginx/deploy>
 
 Use the yaml manifest don't kubectl apply yet
 
