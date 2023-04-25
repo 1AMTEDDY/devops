@@ -27,12 +27,7 @@ variable "description" {
   description = "Default description of the created service accounts (defaults to no description)"
   default     = "Dev Service account for Google AV Program"
 }
-variable "terraform-credentials" {
-    type     = string
-    default = ""
-    description = "The GCP service account that terraform will use to authenticate to the project"
 
-}
 variable "region" {
     type = string
     default = ""

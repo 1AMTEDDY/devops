@@ -39,7 +39,6 @@ module "BigQuery_dev" {
     for_each = local.bigquery
   dataset_id                  = each.value.dataset_id
   dataset_name               = each.value.dataset_name
-  location                    = var.location
   project                     = var.project
 
 }
@@ -49,9 +48,8 @@ module "BigQuery_dev" {
 module "google_storage_bucket" {
     source = "./modules/cloud-storage"
     for_each = local.google_storage_bucket
-    name                   = each.value.name
+    names                   = each.value.name
     project                = var.project
-    location               = var.location
     storage_class          = each.value.storage_class
 
 }
