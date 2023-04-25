@@ -49,7 +49,7 @@ module "google_storage_bucket" {
     source = "./modules/cloud-storage"
     for_each = local.google_storage_bucket
     names                   = each.value.name
-    project                = var.project
+    project_id                = var.project
     storage_class          = each.value.storage_class
 
 }
