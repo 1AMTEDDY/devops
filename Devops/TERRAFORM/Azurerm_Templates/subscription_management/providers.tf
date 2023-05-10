@@ -18,7 +18,7 @@ terraform {
 # Azure Resource Manager Provider
 provider "azurerm" {
   features {}
-  subscription_id = ""
+
 }
 
 # Azure AD Provider
